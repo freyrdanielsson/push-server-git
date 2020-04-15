@@ -8,7 +8,7 @@ const cors = require('./cors');
 const {
     PORT: port = 5000,
     HOST: host = '127.0.0.1',
-} = {}
+} = process.env;
 
 // Take from env irl
 const vapidKeys = {
