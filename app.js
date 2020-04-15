@@ -55,7 +55,7 @@ function sendPushNotification(req, res) {
           text: repository.name,
           image: '',
           tag: after,
-          url: 'https://github.com'
+          url: repository.htlm_url
         })
       )
       .catch(err => {
