@@ -37,14 +37,13 @@ function handlePushNotificationSubscription(req, res) {
     const subscriptionRequest = req.body;
     const susbscriptionId = createHash(JSON.stringify(subscriptionRequest));
     subscriptions[susbscriptionId] = subscriptionRequest;
-    console.log(susbscriptionId, subscriptionRequest);
     
     res.status(201).json({ id: susbscriptionId, status: 'OK'});
 }
 
-let i = 0;
 function sendPushNotification(req, res) {
-    i++;
+    const { repository, after } = req.body
+    
     const subscriptionId = req.params.id;
     const pushSubscription = subscriptions[subscriptionId];
     
@@ -53,9 +52,9 @@ function sendPushNotification(req, res) {
         pushSubscription,
         JSON.stringify({
           title: 'Woho github activity!',
-          text: 'Take a look at the new event',
+          text: repository.name,
           image: '',
-          tag: i,
+          tag: after,
           url: 'https://github.com'
         })
       )
@@ -69,6 +68,7 @@ function sendPushNotification(req, res) {
 
 app.post('/', handlePushNotificationSubscription);
 app.get('/:id', sendPushNotification);
+app.post('/:id', sendPushNotification)
 
 app.listen(port, () => {
     if (host) {
