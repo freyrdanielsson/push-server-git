@@ -45,15 +45,12 @@ function sendPushNotification(req, res) {
   const { repository } = req.body
 
   const subscriptionId = req.params.id;
-  const pushSubscription = subscriptions[subscriptionId];
-  console.log(repository);
-  console.log(repository.html_url);
-  
+  const pushSubscription = subscriptions[subscriptionId];  
 
   const options = JSON.stringify({
     title: 'Woho github activity!',
     text: repository.name,
-    url: repository.htlm_url,
+    url: repository.html_url,
     image: '',
   });
 
