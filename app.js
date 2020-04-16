@@ -46,6 +46,8 @@ function sendPushNotification(req, res) {
     
     const subscriptionId = req.params.id;
     const pushSubscription = subscriptions[subscriptionId];
+    console.log(repository);
+    
     
     webpush
       .sendNotification(
