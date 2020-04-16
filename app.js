@@ -42,7 +42,7 @@ function handlePushNotificationSubscription(req, res) {
 }
 
 function sendPushNotification(req, res) {
-    const { repository, after } = req.body
+    const { repository } = req.body
     
     const subscriptionId = req.params.id;
     const pushSubscription = subscriptions[subscriptionId];
@@ -56,7 +56,6 @@ function sendPushNotification(req, res) {
           title: 'Woho github activity!',
           text: repository.name,
           image: '',
-          tag: after,
           url: repository.htlm_url
         })
       )
