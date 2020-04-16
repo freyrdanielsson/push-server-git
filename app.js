@@ -55,8 +55,8 @@ function sendPushNotification(req, res) {
         JSON.stringify({
           title: 'Woho github activity!',
           text: repository.name,
+          url: repository.htlm_url,
           image: '',
-          url: repository.htlm_url
         })
       )
       .catch(err => {
